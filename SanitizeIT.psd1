@@ -30,7 +30,8 @@
         'Invoke-Anonymization',
         'Test-SanitizedOutput',
         'Export-SanitizationReview',
-        'Import-SanitizationDecision'
+        'Import-SanitizationDecision',
+        'Invoke-FullSanitization'
     )
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
