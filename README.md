@@ -1,63 +1,86 @@
 # SanitizeIT
 
-SanitizeIT is een PowerShell-gebaseerde tool voor het veilig anonimiseren en pseudonimiseren van organisatiedata (zoals exports en datasets) voordat deze gedeeld worden met externe partijen.
+SanitizeIT is a PowerShell-based tool for securely anonymizing and pseudonymizing organizational data (such as exports and datasets) before sharing it with third parties.
 
-De tool maakt gebruik van een **two-pass workflow**: eerst inventariseren wat gevoelig is, daarna de anonimisering toepassen op basis van menselijke review en beleid.
+The tool uses a **two-pass workflow**: first, inventory sensitive information; then, apply anonymization based on human review and predefined policies.
 
-## Kenmerken
+## Key Features
 
-- **Ondersteunde Formaten:** CSV, JSON, CLIXML.
-- **Twee-traps proces:** Inventarisatie -> Review -> Anonimisering.
-- **Slimme Detectie:**
-  - *Schema-based:* Herkent gevoelige velden zoals `Email`, `ServerName`, `SID`.
-  - *Value-based:* Regex-engine voor IP-adressen, Emails, UNC-paden, etc.
-- **Consistentie:** Dezelfde originele waarde krijgt consequent dezelfde alias binnen een run.
-- **Quality Gate:** Automatische post-scan die controleert of er nog gevoelige data is achtergebleven.
-- **Audit-proof:** Uitgebreide logging en rapportage zonder PII te lekken.
+- **Supported Formats:** CSV, JSON, CLIXML.
+- **Two-Pass Process:** Inventory -> Review -> Anonymization.
+- **Smart Detection:**
+  - *Schema-based:* Recognizes sensitive fields like `Email`, `ServerName`, `SID`.
+  - *Value-based:* Regex engine for IP addresses, Emails, UNC paths, etc.
+- **Consistency:** The same original value consistently receives the same alias within a run.
+- **Quality Gate:** Automated post-scan that checks if any sensitive data remains.
+- **Audit-proof:** Detailed logging and reporting without leaking PII.
 
-## Projectstructuur
+## Project Structure
 
-- `src/Public/`: User-facing PowerShell commando's.
-- `src/Private/`: Interne logica en helpers.
-- `policy/`: Bevat `rules.psd1` met de detectie-definities.
-- `workspace/`: Wordt gebruikt voor run-specifieke data (Inventory, Mappings, Output).
+- `src/Public/`: User-facing PowerShell commands.
+- `src/Private/`: Internal logic and helpers.
+- `policy/`: Contains `rules.psd1` with detection definitions.
+- `workspace/`: Used for run-specific data (Inventory, Mappings, Output).
 
-## Gebruik
+## Usage
 
-### 1. Inventarisatie (Pass 1)
-Scan een bronmap op gevoelige informatie.
+### 1. Inventory (Pass 1)
+Scan a source folder for sensitive information.
 ```powershell
 Import-Module ".\SanitizeIT.psd1"
 $Run = New-SanitizationInventory -InputPath "C:\Data\Export" -ProjectName "SupportCase123"
 ```
 
-### 2. Review (Menselijke controle)
-Exporteer de resultaten naar CSV om ze in Excel te beoordelen.
+### 2. Review (Human Control)
+Export the results to CSV to review them in Excel (or any CSV editor).
 ```powershell
 Export-SanitizationReview -InventoryPath $Run.InventoryFile -OutputPath ".\workspace\$($Run.RunId)\review.csv"
-# Pas de 'Action' kolom aan (Replace/Keep) in Excel en sla op.
+# Adjust the 'Action' column (Replace/Keep) in the CSV and save.
 ```
 
-### 3. Mapping & Anonimisering (Pass 2)
-Genereer de alias-mapping en pas de anonimisering toe.
+### 3. Mapping & Anonymization (Pass 2)
+Generate the alias mapping and apply the anonymization.
 ```powershell
 Import-SanitizationDecision -CSVPath ".\workspace\$($Run.RunId)\review.csv" -OutputPath ".\workspace\$($Run.RunId)\decisions.json"
 New-SanitizationMapping -InventoryPath $Run.InventoryFile -DecisionsPath ".\workspace\$($Run.RunId)\decisions.json"
 Invoke-Anonymization -WorkspacePath $Run.RunFolder
 ```
 
-### 4. Verificatie
-Controleer de gesaneerde output via de Quality Gate.
+### 4. Verification
+Check the sanitized output via the Quality Gate.
 ```powershell
 Test-SanitizedOutput -Path "$($Run.RunFolder)\sanitized"
 ```
 
-## Beveiliging
+### 5. Quick Start (Unified Flow)
+Use the orchestrator for a quick automated run (useful for testing).
+```powershell
+Invoke-FullSanitization -InputPath ".\sample_data" -SkipReview -Verbose
+```
 
-- **Workspace:** De `workspace/` map is opgenomen in `.gitignore`.
-- **Salts:** Voor deterministische pseudonimisering wordt aanbevolen om een secure salt te gebruiken.
-- **Geen Leakage:** Originelen worden nooit in rapporten of logs buiten de beveiligde workspace opgeslagen.
+## Documentation & Help
 
-## Auteurs
+All functions are provided with comprehensive **English** Comment-Based Help. You can access this via the standard PowerShell `Get-Help` command:
+
+```powershell
+Get-Help New-SanitizationInventory -Detailed
+```
+
+## Sample Data
+
+The `sample_data/` folder contains various test files to evaluate the tool:
+- `servers.csv`: Server inventory.
+- `users.json`: User data.
+- `assets.csv`: Asset management with serial numbers.
+- `network_config.json`: Network settings.
+- `settings.clixml`: PowerShell object export.
+
+## Security
+
+- **Workspace:** The `workspace/` folder is included in `.gitignore`.
+- **Salts:** For deterministic pseudonymization, it is recommended to use a secure salt.
+- **No Leakage:** Original values are never stored in reports or logs outside of the secure workspace.
+
+## Authors
 
 - **Urrel Monsels**
