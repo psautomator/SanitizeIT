@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "DisplayName": "John Doe",
+        "SamAccountName": "jdoe",
+        "DistinguishedName": "CN=John Doe,OU=Users,DC=contoso,DC=com",
+        "SID": "S-1-5-21-12345678-12345678-12345678-1001",
+        "HomeDirectory": "\\\\filestore\\users$\\jdoe",
+        "EmailAddress": "john.doe@contoso.com"
+    },
+    {
+        "id": 2,
+        "DisplayName": "Alice Smith",
+        "SamAccountName": "asmith",
+        "DistinguishedName": "CN=Alice Smith,OU=Users,DC=contoso,DC=com",
+        "SID": "S-1-5-21-12345678-12345678-12345678-1002",
+        "HomeDirectory": "\\\\filestore\\users$\\asmith",
+        "EmailAddress": "alice.smith@contoso.com"
+    }
+]

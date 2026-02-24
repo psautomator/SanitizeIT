@@ -1,0 +1,4 @@
+ServerName,IPAddress,AdminEmail,SamAccountName,UNCPath
+SRV-SQL-01,10.0.0.5,admin@org.com,jonsnow,\\fileserver\share\docs
+APP-WEB-02,192.168.1.10,webmaster@org.com,daenerys,\\nas01\backup
+TEST-DB-03,172.16.0.100,dbadmin@org.com,tyrion,\\share\sql
