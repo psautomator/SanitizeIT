@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+    Imports decisions from an edited review CSV file.
+
+.DESCRIPTION
+    Reads the CSV edited by the user and filters for rows where the action is 'Replace' or 'Keep'.
+    Saves these as decisions.json for use in the mapping phase.
+
+.PARAMETER CSVPath
+    The path to the edited review CSV.
+
+.PARAMETER OutputPath
+    The target path for the decisions.json file.
+
+.EXAMPLE
+    Import-SanitizationDecision -CSVPath ".\review_done.csv" -OutputPath ".\decisions.json"
+    Converts the CSV to a machine-readable JSON format.
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Import-SanitizationDecision {
     [CmdletBinding()]
     param(

@@ -1,0 +1,26 @@
+[
+    {
+        "VLAN": "Prod-Data",
+        "ID": 100,
+        "Subnet": "10.100.0.0/24",
+        "Gateway": "10.100.0.1",
+        "AdminContact": "prod-network-team@org.com",
+        "Description": "Production database and application tier subnet"
+    },
+    {
+        "VLAN": "Management",
+        "ID": 999,
+        "Subnet": "192.168.99.0/24",
+        "Gateway": "192.168.99.1",
+        "AdminContact": "it-security@org.com",
+        "Description": "Secure management interface network"
+    },
+    {
+        "VLAN": "Guest-WiFi",
+        "ID": 200,
+        "Subnet": "172.31.0.0/16",
+        "Gateway": "172.31.0.1",
+        "AdminContact": "helpdesk@org.com",
+        "Description": "Public guest wireless access"
+    }
+]

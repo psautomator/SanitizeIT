@@ -1,3 +1,28 @@
+<#
+.SYNOPSIS
+    Scans a PowerShell object for sensitive data based on policy rules.
+
+.DESCRIPTION
+    Checks both property names (Schema rules) and property values (Value rules/Regex)
+    to identify potential sensitive information. Assigns a confidence score and 
+    provides evidence for the match.
+
+.PARAMETER InputObject
+    The PowerShell object (usually a PSCustomObject) to scan.
+
+.PARAMETER Policy
+    The policy object containing SchemaRules and Rules (Value-based).
+
+.PARAMETER ContextFile
+    The relative path of the file being scanned (for reporting purposes).
+
+.EXAMPLE
+    $Candidates = Find-SensitiveCandidates -InputObject $MyObj -Policy $MyPolicy -ContextFile "data.csv"
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Find-SensitiveCandidates {
     [CmdletBinding()]
     param(

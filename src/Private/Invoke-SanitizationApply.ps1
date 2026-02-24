@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+    Applies sanitization mappings to a PowerShell object.
+
+.DESCRIPTION
+    Recursively (at the property level) replaces sensitive values with their aliases
+    based on the provided mapping lookup table.
+
+.PARAMETER InputObject
+    The object to be sanitized.
+
+.PARAMETER Mapping
+    A hashtable where keys are original values and values are objects containing the alias.
+
+.EXAMPLE
+    Invoke-SanitizationApply -InputObject $Obj -Mapping $MappingLookup
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Invoke-SanitizationApply {
     [CmdletBinding()]
     param(

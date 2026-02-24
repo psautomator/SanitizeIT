@@ -1,3 +1,31 @@
+<#
+.SYNOPSIS
+    Starts the first phase of the sanitization process: Inventory.
+
+.DESCRIPTION
+    Recursively scans a specified source directory for files (CSV, JSON, CLIXML) and detects potentially sensitive information
+    based on schema rules (property names) and value rules (regex). Generates inventory.json and classification.json.
+
+.PARAMETER InputPath
+    The path to the directory containing the source files.
+
+.PARAMETER WorkspacePath
+    The directory where run-specific data is stored. Defaults to ".\workspace".
+
+.PARAMETER PolicyPath
+    The path to the rules file (PSD1) used for detection. Defaults to ".\policy\rules.psd1".
+
+.PARAMETER ProjectName
+    An optional name for the run to make the folder more recognizable.
+
+.EXAMPLE
+    New-SanitizationInventory -InputPath "C:\Exports" -ProjectName "SupportCase01"
+    Scans the C:\Exports directory and saves the results in a new RUN folder.
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function New-SanitizationInventory {
     [CmdletBinding()]
     param(

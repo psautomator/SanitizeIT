@@ -1,3 +1,32 @@
+<#
+.SYNOPSIS
+    Generates a mapping between original values and aliases.
+
+.DESCRIPTION
+    Reads the inventory and any user-made decisions (decisions.json) and 
+    generates a mapping.json. Each original value is linked to a consistent alias 
+    (e.g., SVR-001) for the sanitization process.
+
+.PARAMETER InventoryPath
+    The path to the inventory.json file of the run.
+
+.PARAMETER DecisionsPath
+    The path to the decisions.json file (imported from the review step).
+
+.PARAMETER Salt
+    An optional salt for deterministic pseudonymization.
+
+.PARAMETER OutputPath
+    The directory where mapping.json should be saved.
+
+.EXAMPLE
+    New-SanitizationMapping -InventoryPath ".\workspace\RUN_xxx\work\inventory\inventory.json"
+    Generates a mapping based only on the inventory (for automated runs).
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function New-SanitizationMapping {
     [CmdletBinding()]
     param(

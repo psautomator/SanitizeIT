@@ -1,3 +1,22 @@
+<#
+.SYNOPSIS
+    Discovers files in a directory and detects their type.
+
+.DESCRIPTION
+    Recursively scans a directory and identifies relevant files (CSV, JSON, CLIXML).
+    Collects metadata such as size, hash, and relative path.
+
+.PARAMETER Path
+    The starting path for the discovery.
+
+.EXAMPLE
+    Get-SanitizationFiles -Path "C:\Data"
+    Returns a list of FileObjects including their type.
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Get-SanitizationFiles {
     [CmdletBinding()]
     param(

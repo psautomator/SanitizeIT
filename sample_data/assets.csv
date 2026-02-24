@@ -1,0 +1,5 @@
+AssetID,AssetName,SerialNumber,InternalIP,OwnerEmail,Location
+AST-101,SQL-CORE-01,SN-8822-X1,10.10.1.5,dbadmin@internal.net,DataCenter-A
+AST-102,WEB-FE-01,SN-9911-Y2,10.10.1.10,webmaster@internal.net,DataCenter-B
+AST-103,DC-PROD-01,SN-1122-Z3,10.1.0.1,sysadmin@internal.net,DataCenter-A
+AST-104,VPN-GW-01,SN-4433-W4,172.16.254.1,netops@internal.net,Edge-Location

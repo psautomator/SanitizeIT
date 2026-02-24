@@ -1,3 +1,31 @@
+<#
+.SYNOPSIS
+    Orchestrates the complete sanitization flow in one command.
+
+.DESCRIPTION
+    Sequentially executes Inventory, Mapping, Anonymization, and Verification.
+    Can be used with the -SkipReview switch for full automation without human intervention.
+
+.PARAMETER InputPath
+    The path to the source directory containing the data.
+
+.PARAMETER ProjectName
+    The name of the project/run. Defaults to "AutoRun".
+
+.PARAMETER SkipReview
+    If set, the tool skips the manual review step and directly generates a mapping based on all hits.
+
+.PARAMETER WorkspacePath
+    The directory where results are stored. Defaults to ".\workspace".
+
+.EXAMPLE
+    Invoke-FullSanitization -InputPath ".\data" -SkipReview -Verbose
+    Runs the entire flow automatically for the .\data directory.
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Invoke-FullSanitization {
     [CmdletBinding()]
     param(

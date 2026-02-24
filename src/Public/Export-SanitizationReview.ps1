@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+    Exports the identified candidates to a CSV for manual review.
+
+.DESCRIPTION
+    Creates an organized CSV file of all unique sensitive values found. 
+    Adds an 'Action' column that defaults to 'Replace' or 'Review' based on the confidence score.
+
+.PARAMETER InventoryPath
+    The path to the inventory.json file.
+
+.PARAMETER OutputPath
+    The target path for the CSV file.
+
+.EXAMPLE
+    Export-SanitizationReview -InventoryPath ".\workspace\RUN_xxx\work\inventory\inventory.json" -OutputPath ".\review.csv"
+    Generates a review file that can be opened in Excel.
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Export-SanitizationReview {
     [CmdletBinding()]
     param(

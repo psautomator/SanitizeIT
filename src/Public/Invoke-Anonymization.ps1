@@ -1,3 +1,28 @@
+<#
+.SYNOPSIS
+    Performs the anonymization of source data (Phase 3).
+
+.DESCRIPTION
+    Reads the source files, applies the mapping to replace sensitive values with aliases,
+    and saves the cleaned files in the 'sanitized' folder within the workspace.
+
+.PARAMETER WorkspacePath
+    The path to the run folder (e.g., .\workspace\RUN_xxx).
+
+.PARAMETER MappingPath
+    The path to the mapping.json. If not provided, it is looked for in the workspace.
+
+.PARAMETER OutputPath
+    The directory where sanitized files are saved. Defaults to "\sanitized" in the workspace.
+
+.EXAMPLE
+    Invoke-Anonymization -WorkspacePath ".\workspace\RUN_20240224_Debug" -Verbose
+    Anonymizes all files listed in the run's files_index.
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Invoke-Anonymization {
     [CmdletBinding()]
     param(

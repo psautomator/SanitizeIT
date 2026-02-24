@@ -1,3 +1,21 @@
+<#
+.SYNOPSIS
+    Parses a file into PowerShell objects based on the detected type.
+
+.DESCRIPTION
+    Loads the content of a file (CSV, JSON, CLIXML) and converts it to PSCustomObjects.
+
+.PARAMETER FileObject
+    An object with FullName and Type (as returned by Get-SanitizationFiles).
+
+.EXAMPLE
+    $Files = Get-SanitizationFiles -Path "."
+    $Objects = Read-SanitizationFile -FileObject $Files[0]
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Read-SanitizationFile {
     [CmdletBinding()]
     param(

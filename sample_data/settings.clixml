@@ -1,0 +1,29 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>System.Management.Automation.PSCustomObject</T>
+      <T>System.Object</T>
+    </TN>
+    <MS>
+      <S N="Setting">MasterAccount</S>
+      <S N="Value">SA_Admin_Sanitize</S>
+      <S N="Type">Identity</S>
+    </MS>
+  </Obj>
+  <Obj RefId="1">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="Setting">BackupPath</S>
+      <S N="Value">\\backup-server\san_backups$</S>
+      <S N="Type">Network</S>
+    </MS>
+  </Obj>
+  <Obj RefId="2">
+    <TNRef RefId="0" />
+    <MS>
+      <S N="Setting">AlertEmail</S>
+      <S N="Value">alerts-team@org.com</S>
+      <S N="Type">Person</S>
+    </MS>
+  </Obj>
+</Objs>

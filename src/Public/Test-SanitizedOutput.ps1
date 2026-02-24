@@ -1,3 +1,28 @@
+<#
+.SYNOPSIS
+    Performs a quality check on the anonymized output.
+
+.DESCRIPTION
+    Re-scans the specified directory (usually the 'sanitized' folder) with the current rules. 
+    If values with a high Confidence (leaks) are still found, the Quality Gate fails.
+
+.PARAMETER Path
+    The path to the anonymized files.
+
+.PARAMETER PolicyPath
+    The path to the rules file. Defaults to ".\policy\rules.psd1".
+
+.PARAMETER Threshold
+    The confidence threshold after which a match is considered a leak. Defaults to 0.7.
+
+.EXAMPLE
+    Test-SanitizedOutput -Path ".\workspace\RUN_xxx\sanitized"
+    Checks if the sanitized files truly contain no more sensitive data.
+
+.NOTES
+    Author: Urrel Monsels
+    Part of the SanitizeIT project.
+#>
 function Test-SanitizedOutput {
     [CmdletBinding()]
     param(
